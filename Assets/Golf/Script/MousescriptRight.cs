@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class MousescriptRight : MonoBehaviour
+public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Transform screen; // the screen or camera pivot
     public float ySpeed = 20f; // degrees per second
@@ -23,12 +23,9 @@ public class MousescriptRight : MonoBehaviour
         {
             // Increment the currentY angle
             currentY += ySpeed * Time.deltaTime;
-
-            // Clamp the angle to the maximum of -170 degrees
             currentY = Mathf.Max(currentY, 190f);
 
-            // Apply the rotation if it's less than 170 degrees
-            if (currentY > -170f)
+            if (currentY <= 190f)
             {
                 // Apply the rotation
                 screen.rotation = Quaternion.Euler(screen.eulerAngles.x, currentY, screen.eulerAngles.z);
@@ -36,7 +33,7 @@ public class MousescriptRight : MonoBehaviour
         }
         else
         {
-            if (currentY <= 180)
+            if (currentY >= 180)
             {
 
                 currentY = Mathf.MoveTowards(currentY, 180f, resetSpeed * Time.deltaTime);

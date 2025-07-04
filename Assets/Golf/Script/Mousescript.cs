@@ -24,6 +24,7 @@ public class Mousescript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
     {
         if (isHover)
         {
+            Debug.Log("Hovering over the screen");
             // Increment the currentY angle
             currentY -= ySpeed * Time.deltaTime;
 
