@@ -7,6 +7,7 @@ public class Mousescript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
 {
     public Transform screen; // the screen or camera pivot
     public float ySpeed = 20f; // degrees per second
+    public GameObject Rightbutton; // Reference to the left button
 
     private bool isHover = false;
     private float currentY;
@@ -24,7 +25,8 @@ public class Mousescript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
     {
         if (isHover)
         {
-            Debug.Log("Hovering over the screen");
+            Rightbutton.SetActive(false); // Hide the right button when hovering over the left button
+            Debug.Log($"isHover: {isHover}, currentY: {currentY}");
             // Increment the currentY angle
             currentY -= ySpeed * Time.deltaTime;
 
@@ -50,9 +52,19 @@ public class Mousescript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
 
 
         }
+        if (currentY == 180f)
+        {
+            Rightbutton.SetActive(true); // Show the left button when the screen is at 180 degrees
+        }
     }
 
-    public void OnPointerEnter(PointerEventData e) => isHover = true;
+    public void OnPointerEnter(PointerEventData e)
+    {
+        if(e.pointerEnter != null && e.pointerEnter.gameObject.name == "Left")
+        {
+            isHover = true; // Set the hover flag to true when the pointer enters
+        }
+    }
     public void OnPointerExit(PointerEventData e) => isHover = false;
 }
 

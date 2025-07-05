@@ -1,19 +1,18 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public Transform screen; // the screen or camera pivot
-    public float ySpeed = 20f; // degrees per second
+    public Transform screen;
+    public GameObject leftbutton;
+    public float ySpeed = 20f;
+    public float resetSpeed = 1f;
 
     private bool isHover = false;
     private float currentY;
-    public float resetSpeed = 20f;
-
 
     void Start()
     {
-        // Initialize currentY with the current y-angle of the screen
         currentY = screen.eulerAngles.y;
     }
 
@@ -21,11 +20,14 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         if (isHover)
         {
+            Debug.Log($"isHover: {isHover}, currentY: {currentY}");
             // Increment the currentY angle
             currentY += ySpeed * Time.deltaTime;
-            currentY = Mathf.Max(currentY, 190f);
 
-            if (currentY <= 190f)
+
+            currentY = Mathf.Min(currentY, 190f);
+
+            if (currentY > -170f)
             {
                 // Apply the rotation
                 screen.rotation = Quaternion.Euler(screen.eulerAngles.x, currentY, screen.eulerAngles.z);
@@ -43,8 +45,26 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
 
         }
+        if (currentY == 180f)
+        {
+            leftbutton.SetActive(true); // Show the left button when the screen is at 180 degrees
+        }
     }
 
-    public void OnPointerEnter(PointerEventData e) => isHover = true;
-    public void OnPointerExit(PointerEventData e) => isHover = false;
+    public void OnPointerEnter(PointerEventData e)
+    {
+        if (e.pointerEnter != null && e.pointerEnter.gameObject.name == "Right")
+        {
+            leftbutton.SetActive(false); // Hide the left button when hovering over the right button
+            isHover = true; // Set the hover flag to true when the pointer enters
+        }
+    }
+    public void OnPointerExit(PointerEventData e) {
+        isHover = false; // Set the hover flag to false when the pointer exits
+
+    }
 }
+    
+
+
+
