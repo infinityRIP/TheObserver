@@ -20,7 +20,7 @@ public class ActionChecker : MonoBehaviour
     {
         // ซ่อนปุ่มในตอนเริ่มต้น
         reportButton.gameObject.SetActive(false);
-        ignoreButton.gameObject.SetActive(false);
+        ignoreButton.gameObject.SetActive(true);
 
         // เพิ่ม Listener ให้กับ Toggle ทุกตัว
         // เมื่อมีการติ๊ก/ไม่ติ๊ก จะเรียกฟังก์ชัน CheckActions()
@@ -49,7 +49,6 @@ public class ActionChecker : MonoBehaviour
         {
             // ถ้ามีพฤติกรรมน่าสงสัย 3 ข้อขึ้นไป ให้แสดงปุ่ม
             reportButton.gameObject.SetActive(true);
-            ignoreButton.gameObject.SetActive(true);
 
             if (suspiciousCount >= criticalThreshold)
             {
@@ -61,13 +60,13 @@ public class ActionChecker : MonoBehaviour
         {
             // ถ้าน้อยกว่า 3 ให้ซ่อนปุ่มไว้
             reportButton.gameObject.SetActive(false);
-            ignoreButton.gameObject.SetActive(false);
+            ignoreButton.gameObject.SetActive(true);
         }
     }
 
     public void ReportActions()
     {
-        if (actionToggles[0].isOn && actionToggles[1].isOn && !actionToggles[2] && !actionToggles[3])
+        if (actionToggles[0].isOn && actionToggles[1].isOn && !actionToggles[2].isOn && !actionToggles[3].isOn)
         {
             Debug.Log("รายงานพฤติกรรมที่น่าสงสัย");
             // ที่นี่สามารถเพิ่มโค้ดเพื่อส่งข้อมูลไปยังระบบรายงานได้
