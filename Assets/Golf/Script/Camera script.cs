@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEditor.SceneManagement; // Required for scene management in Unity Editor
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class Camerascript : MonoBehaviour
@@ -13,6 +14,7 @@ public class Camerascript : MonoBehaviour
     public GameObject maingamecanvas; // Reference to the main game canvas
     public float zoomSpeed = 20f; // Speed of the camera zoom
     public float rotateSpeed = 100f; // Speed of the camera rotation
+    public int Fov = 90;
     public GameObject Panelfade; // Reference to the reset button
     public CanvasGroup myCanvasGroup;
     float camy;
@@ -28,7 +30,7 @@ public class Camerascript : MonoBehaviour
     {
         if (isCameraZoom == true)
         {
-            StartCoroutine(FadeOut()); // Start fading out the canvas group when camera is zoomed in
+            //StartCoroutine(FadeOut()); // Start fading out the canvas group when camera is zoomed in
             StartCoroutine(ResetYRotation()); // Start the coroutine to reset the camera's y rotation
             Screenzoom.gameObject.SetActive(false); // Show the reset button when camera is zoomed in
             StartCoroutine(Zoomcamera()); // Start the coroutine to zoom the camera
@@ -55,14 +57,10 @@ public class Camerascript : MonoBehaviour
     {
         mainCamera.fieldOfView = Mathf.MoveTowards(
         mainCamera.fieldOfView,
-        10,
+        Fov,
         zoomSpeed * Time.deltaTime);
 
         yield return new WaitForSeconds(2f);
-
-        Debug.Log("change scene");
-
-
 
     }
     IEnumerator ResetYRotation()
@@ -85,20 +83,20 @@ public class Camerascript : MonoBehaviour
 
         mainCamera.transform.rotation = targetRotation; // snap to final angle
     }
-    IEnumerator FadeOut()
-    {
-        float fadeDuration = 1f; // Duration of the fade out
-        float elapsed = 0f;
-        while (elapsed <= fadeDuration)
-        {
-            elapsed += Time.deltaTime;
-            myCanvasGroup.alpha = Mathf.Clamp01(elapsed / fadeDuration);
-            yield return null;
-        }
+    //IEnumerator FadeOut()
+    //{
+    //    float fadeDuration = 1f; // Duration of the fade out
+    //    float elapsed = 0f;
+    //    while (elapsed <= fadeDuration)
+    //    {
+    //        elapsed += Time.deltaTime;
+    //        myCanvasGroup.alpha = Mathf.Clamp01(elapsed / fadeDuration);
+    //        yield return null;
+    //    }
 
-        myCanvasGroup.alpha = 1f;
-        myCanvasGroup.interactable = false;
-        myCanvasGroup.blocksRaycasts = false;
-    }
+    //    myCanvasGroup.alpha = 1f;
+    //    myCanvasGroup.interactable = false;
+    //    myCanvasGroup.blocksRaycasts = false;
+    //}
 
 }
