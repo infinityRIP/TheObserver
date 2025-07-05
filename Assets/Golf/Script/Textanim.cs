@@ -10,7 +10,7 @@ public class Textanim : MonoBehaviour
     public TMP_Text number2;
 
     public float limit1 = -3000f; // Y limit for number1
-    public float limit2 = -100f; // Y limit for number2
+    public float limit2 = -300f; // Y limit for number2
 
     private bool isFalling = false;
 
