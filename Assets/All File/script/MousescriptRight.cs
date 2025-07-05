@@ -11,8 +11,8 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public float resetSpeed = 1f;
 
     private bool isHover = false;
-    private float currentY;
     public float Times;
+    public float currentY;
 
     void Start()
     {
@@ -22,6 +22,7 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     void Update()
     {
+        Debug.LogWarning($"Right Y : {currentY}");
         if (isHover)
         {
             currentY += ySpeed * Times;
@@ -35,9 +36,6 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if (!isHover && currentY >= 90)
         {
             currentY -= ySpeed * Times;
-        }
-        {
-            leftbutton.SetActive(true);
         }
     }
 

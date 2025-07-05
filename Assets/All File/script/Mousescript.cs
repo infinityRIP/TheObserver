@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Mousescript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
+public class Mousescript : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
 {
     public MousescriptRight MSR;
     public Transform screen; // the screen or camera pivot
@@ -12,8 +12,8 @@ public class Mousescript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
     public float Times;
 
     private bool isHover = false;
-    private float currentY;
     public float resetSpeed = 10f;
+    public float currentY;
 
 
     void Start()
@@ -24,9 +24,9 @@ public class Mousescript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
 
     void Update()
     {
+        Debug.Log($"Left Y : {currentY}");
         if (isHover)
         {
-
             currentY -= ySpeed * Times;
             currentY = Mathf.Max(currentY, 0f);
 
@@ -40,9 +40,6 @@ public class Mousescript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
             currentY += ySpeed * Times;
         }
 
-        {
-            Rightbutton.SetActive(true);
-        }
     }
 
     public void OnPointerEnter(PointerEventData e)

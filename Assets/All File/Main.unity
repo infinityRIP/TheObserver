@@ -309,9 +309,10 @@ MonoBehaviour:
   MSL: {fileID: 0}
   screen: {fileID: 1168999671}
   leftbutton: {fileID: 1609014946}
-  ySpeed: 10
+  ySpeed: 40
   resetSpeed: 80
   Times: 0
+  currentY: 0
 --- !u!114 &116735651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4473,6 +4474,7 @@ GameObject:
   - component: {fileID: 1081605290}
   - component: {fileID: 1081605294}
   - component: {fileID: 1081605295}
+  - component: {fileID: 1081605296}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -4603,6 +4605,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Vdo: {fileID: 877740977}
+--- !u!114 &1081605296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081605289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c559b6adec92b6649a4b0c87baccddb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  VideoPlayer: {fileID: 1322443913}
+  VP: {fileID: 1322443915}
 --- !u!1 &1111433013
 GameObject:
   m_ObjectHideFlags: 0
@@ -5102,13 +5118,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1168999668}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.70710707, z: -0, w: 0.7071066}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -0.33, y: 0.8, z: -0.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1168999672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5710,67 +5726,91 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4960566599664342488, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_Name
-      value: Screen (1)
+      value: Screen 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4960566599664342488, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6176015769043886070, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_Url
       value: file://E:/video/Minecraft/Minecraft 2022.06.12 - 23.44.18.29.DVR.mp4
       objectReference: {fileID: 0}
     - target: {fileID: 6176015769043886070, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: e8084bddfc7b98644ba1f86a8896b6f8, type: 3}
+    - target: {fileID: 6176015769043886070, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_DataSource
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6176015769043886070, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
-      propertyPath: 'm_DirectAudioMutes.Array.data[0]'
-      value: 1
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6176015769043886070, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
+      propertyPath: m_WaitForFirstFrame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6176015769043886070, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
+      propertyPath: 'm_DirectAudioMutes.Array.data[0]'
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6176015769043886070, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
+      propertyPath: 'm_DirectAudioVolumes.Array.data[0]'
+      value: 0.508
+      objectReference: {fileID: 0}
+    - target: {fileID: 7311595759312665549, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 16b7e6f4e58ff004d808246530fe8e96, type: 2}
     - target: {fileID: 7528771761635172817, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6457793
+      value: 0.6710293
       objectReference: {fileID: 0}
     - target: {fileID: 7528771761635172817, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.4549132
+      value: 0.48302683
       objectReference: {fileID: 0}
     - target: {fileID: 7528771761635172817, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.742
+      value: -0.033
       objectReference: {fileID: 0}
     - target: {fileID: 7528771761635172817, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.593
+      value: 0.59
       objectReference: {fileID: 0}
     - target: {fileID: 7528771761635172817, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.275
+      value: -1.518
       objectReference: {fileID: 0}
     - target: {fileID: 7528771761635172817, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.49366426
+      value: 0.013265769
       objectReference: {fileID: 0}
     - target: {fileID: 7528771761635172817, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.0015588603
+      value: -0.0003793756
       objectReference: {fileID: 0}
     - target: {fileID: 7528771761635172817, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.86950916
+      value: 0.9999027
       objectReference: {fileID: 0}
     - target: {fileID: 7528771761635172817, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.015720187
+      value: -0.0042936746
       objectReference: {fileID: 0}
     - target: {fileID: 7528771761635172817, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -1.478
+      value: 0.491
       objectReference: {fileID: 0}
     - target: {fileID: 7528771761635172817, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 120.815
+      value: 178.48
       objectReference: {fileID: 0}
     - target: {fileID: 7528771761635172817, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 1.045
+      value: -0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5778,14 +5818,19 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4960566599664342488, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1322443914}
+      addedObject: {fileID: 1322443920}
   m_SourcePrefab: {fileID: 100100000, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
 --- !u!1 &1322443913 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4960566599664342488, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
   m_PrefabInstance: {fileID: 1322443912}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1322443914
+--- !u!328 &1322443915 stripped
+VideoPlayer:
+  m_CorrespondingSourceObject: {fileID: 6176015769043886070, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
+  m_PrefabInstance: {fileID: 1322443912}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1322443920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5794,10 +5839,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1322443913}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a557239b4ba244ea8dbcba00b24850, type: 3}
+  m_Script: {fileID: 11500000, guid: 371825324b4bfa440b49fd055b11c6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CS: {fileID: 1081605290}
+  VideoPlayer: {fileID: 1322443913}
+  VP: {fileID: 0}
 --- !u!1 &1332637388
 GameObject:
   m_ObjectHideFlags: 0
@@ -7031,10 +7077,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MSR: {fileID: 0}
   screen: {fileID: 1168999671}
-  ySpeed: 10
+  ySpeed: 40
   Rightbutton: {fileID: 116735648}
   Times: 0
   resetSpeed: 80
+  currentY: 0
 --- !u!114 &1609014948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9163,6 +9210,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Screen
       objectReference: {fileID: 0}
+    - target: {fileID: 6176015769043886070, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: cc5a829d8792ec047a749db8cfe0cd22, type: 3}
+    - target: {fileID: 6176015769043886070, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6176015769043886070, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
+      propertyPath: m_WaitForFirstFrame
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7528771761635172817, guid: 219a19f41dbd74c4aaee708332ed215b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.0138
@@ -9229,6 +9288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CS: {fileID: 1081605290}
+  videoPlayer: {fileID: 877740977}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
