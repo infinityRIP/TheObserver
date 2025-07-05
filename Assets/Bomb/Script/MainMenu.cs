@@ -1,16 +1,22 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
-public class MainMenu : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+public class MainMenu : MonoBehaviour {
+
+    public string nextSceneName = "Main"; //‡Õ“‰ø≈Ï®“°‡¡π
+
+    public void PlayGame ()
     {
         
+        SceneManager.LoadScene(nextSceneName);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void QuitGame ()
     {
-        
+        Debug.Log("Quit!");
+        Application.Quit();
     }
 }
