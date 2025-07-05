@@ -20,7 +20,6 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         if (isHover)
         {
-            Debug.Log($"isHover: {isHover}, currentY: {currentY}");
             // Increment the currentY angle
             currentY += ySpeed * Time.deltaTime;
 

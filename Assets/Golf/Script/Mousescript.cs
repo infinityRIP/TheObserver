@@ -26,7 +26,6 @@ public class Mousescript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
         if (isHover)
         {
             Rightbutton.SetActive(false); // Hide the right button when hovering over the left button
-            Debug.Log($"isHover: {isHover}, currentY: {currentY}");
             // Increment the currentY angle
             currentY -= ySpeed * Time.deltaTime;
 

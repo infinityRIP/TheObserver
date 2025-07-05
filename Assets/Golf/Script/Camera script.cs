@@ -26,7 +26,6 @@ public class Camerascript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Camera position: " + mainCamera.transform.rotation.eulerAngles);
         if (isCameraZoom == true)
         {
             StartCoroutine(FadeOut()); // Start fading out the canvas group when camera is zoomed in
