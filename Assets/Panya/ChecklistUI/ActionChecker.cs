@@ -1,12 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using Unity.VisualScripting; // ต้องมีเพื่อใช้ List
+using Unity.VisualScripting;
+using System.Collections; // ต้องมีเพื่อใช้ List
+using UnityEngine.SceneManagement; // สำหรับการจัดการ Scene
 
 public class ActionChecker : MonoBehaviour
 {
     // ลาก Toggle ทั้งหมดจาก Hierarchy มาใส่ใน List นี้ผ่าน Inspector
     public List<Toggle> actionToggles;
+    public CanvasGroup canvasGroup;
+    public GameObject actionPanel;
+    public float fadeDuration = 1f;
 
     // ลากปุ่มทั้งสองมาใส่
     public Button reportButton;
@@ -18,6 +23,13 @@ public class ActionChecker : MonoBehaviour
 
     void Start()
     {
+        actionPanel.SetActive(false); // แสดง Action Panel เมื่อเริ่มเกม
+        canvasGroup.alpha = 0f;
+        canvasGroup.interactable = false;
+        canvasGroup.blocksRaycasts = false;
+
+        // Start the fade in
+
         // ซ่อนปุ่มในตอนเริ่มต้น
         reportButton.gameObject.SetActive(false);
         ignoreButton.gameObject.SetActive(true);
@@ -66,17 +78,37 @@ public class ActionChecker : MonoBehaviour
 
     public void ReportActions()
     {
-        if (actionToggles[0].isOn && actionToggles[1].isOn && !actionToggles[2].isOn && !actionToggles[3].isOn)
+        if (actionToggles[0].isOn && actionToggles[2].isOn && !actionToggles[1].isOn && !actionToggles[3].isOn)
         {
             Debug.Log("รายงานพฤติกรรมที่น่าสงสัย");
             // ที่นี่สามารถเพิ่มโค้ดเพื่อส่งข้อมูลไปยังระบบรายงานได้
         }
-        else
+        StartCoroutine(FadeIn());
+
+
+
+    }
+    IEnumerator FadeIn() {
+        actionPanel.SetActive(true); // แสดง Action Panel
+
+        float elapsed = 0f;
+        while (elapsed < fadeDuration)
         {
-            Debug.Log("ไม่สามารถรายงานได้ เนื่องจากไม่มีพฤติกรรมที่น่าสงสัย");
+            elapsed += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Clamp01(elapsed / fadeDuration);
+            yield return null;
         }
 
+        // Ensure it's fully visible and interactive
+        canvasGroup.alpha = 1f;
+        canvasGroup.interactable = true;
+        canvasGroup.blocksRaycasts = true;
+        yield return new WaitForSeconds(1f); // รอ 2 วินาที
+        SceneManager.LoadScene("Dayscene"); // เปลี่ยนไปยัง Scene ที่ต้องการ
     }
 
 
 }
+
+
+
