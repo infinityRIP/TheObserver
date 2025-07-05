@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic; // ต้องมีเพื่อใช้ List
+using System.Collections.Generic;
+using Unity.VisualScripting; // ต้องมีเพื่อใช้ List
 
 public class ActionChecker : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class ActionChecker : MonoBehaviour
         int suspiciousCount = 0;
         foreach (Toggle toggle in actionToggles)
         {
+            Debug.Log("Toggle: " + toggle.name + " is " + (toggle.isOn ? "On" : "Off"));
             if (toggle.isOn)
             {
                 suspiciousCount++;
@@ -62,4 +64,20 @@ public class ActionChecker : MonoBehaviour
             ignoreButton.gameObject.SetActive(false);
         }
     }
+
+    public void ReportActions()
+    {
+        if (actionToggles[0].isOn && actionToggles[1].isOn && actionToggles[2] && actionToggles[3])
+        {
+            Debug.Log("รายงานพฤติกรรมที่น่าสงสัย");
+            // ที่นี่สามารถเพิ่มโค้ดเพื่อส่งข้อมูลไปยังระบบรายงานได้
+        }
+        else
+        {
+            Debug.Log("ไม่สามารถรายงานได้ เนื่องจากไม่มีพฤติกรรมที่น่าสงสัย");
+        }
+
+    }
+
+
 }
