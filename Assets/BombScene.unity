@@ -1121,6 +1121,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6840600350336148691, guid: b4c76c24fda705f4c90f4c0506970b03, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8541416429798295336, guid: b4c76c24fda705f4c90f4c0506970b03, type: 3}
       propertyPath: m_Name
       value: Mainmenubom
