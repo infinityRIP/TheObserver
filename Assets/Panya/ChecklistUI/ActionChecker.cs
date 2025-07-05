@@ -67,7 +67,7 @@ public class ActionChecker : MonoBehaviour
 
     public void ReportActions()
     {
-        if (actionToggles[0].isOn && actionToggles[1].isOn && actionToggles[2] && actionToggles[3])
+        if (actionToggles[0].isOn && actionToggles[1].isOn && !actionToggles[2] && !actionToggles[3])
         {
             Debug.Log("รายงานพฤติกรรมที่น่าสงสัย");
             // ที่นี่สามารถเพิ่มโค้ดเพื่อส่งข้อมูลไปยังระบบรายงานได้
