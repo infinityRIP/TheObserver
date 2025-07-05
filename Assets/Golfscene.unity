@@ -457,6 +457,8 @@ MonoBehaviour:
   leftbutton: {fileID: 590255878}
   rightbutton: {fileID: 201097628}
   maingamecanvas: {fileID: 1021690081}
+  zoomSpeed: 50
+  rotateSpeed: 100
 --- !u!114 &319241215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1344,7 +1346,7 @@ Transform:
   m_GameObject: {fileID: 1077787361}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.9998762, z: 0.015734732, w: 0}
-  m_LocalPosition: {x: 0, y: 1.5, z: 1.461}
+  m_LocalPosition: {x: 0, y: 1.477, z: 2.947}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
