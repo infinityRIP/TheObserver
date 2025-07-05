@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.SceneManagement; // Required for scene management in Unity Editor
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -6,63 +8,80 @@ using UnityEngine.UI;
 
 public class Camerascript : MonoBehaviour
 {
+    [Header("Transform")]
+    public GameObject StartPoint;
+    public GameObject Zoom1;
+    public GameObject Zoom2;
+    public Vector3 PoStart;
+    public Vector3 PoZoom1;
+    public Vector3 PoZoom2;
+    public Vector3 CurrentPo;
+    float elapsedTime = 0f;
+    float duration = 0.3f; //
+    [Header("Cam")]
     public bool isCameraZoom = false; // Flag to check if the camera has been reset
     public Camera mainCamera; // Reference to the main camera
-    public Button Screenzoom; // Reference to the reset button
+    [Header("Button")]
+    public GameObject backbutton; // Reference to the back button
     public GameObject leftbutton; // Reference to the left button
     public GameObject rightbutton; // Reference to the right button
     public GameObject maingamecanvas; // Reference to the main game canvas
-    public float zoomSpeed = 20f; // Speed of the camera zoom
+    [Header("Value")]
     public float rotateSpeed = 100f; // Speed of the camera rotation
     public int Fov = 90;
     public GameObject Panelfade; // Reference to the reset button
     public CanvasGroup myCanvasGroup;
     float camy;
+    bool isZoom;
     void Start()
     {
+        PoStart = StartPoint.transform.position;
+        PoZoom1 = Zoom1.transform.position;
+        PoZoom2 = Zoom2.transform.position;
+
         maingamecanvas.SetActive(true); // Show the main game canvas at the start
         myCanvasGroup.alpha = 0f;
         camy = mainCamera.transform.rotation.eulerAngles.y; // Store the initial y rotation of the camera
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (isCameraZoom == true)
-        {
-            //StartCoroutine(FadeOut()); // Start fading out the canvas group when camera is zoomed in
-            StartCoroutine(ResetYRotation()); // Start the coroutine to reset the camera's y rotation
-            Screenzoom.gameObject.SetActive(false); // Show the reset button when camera is zoomed in
-            StartCoroutine(Zoomcamera()); // Start the coroutine to zoom the camera
-            maingamecanvas.SetActive(false); // Hide the main game canvas when camera is zoomed in
-
-        }
-        else
-        {
-            Screenzoom.gameObject.SetActive(true); // Show the reset button when camera is not zoomed in
-
-
-        }
-
-
     }
-    public void clickbutton()
+    public void Zoom()
     {
-        Panelfade.SetActive(true); // Show the panel fade when the button is clicked
-        StartCoroutine(Zoomcamera());
-        Debug.Log("Camera position reset to (0, 1.5, 1.8)");
-        isCameraZoom = true; // Set the flag to true
+        CurrentPo = mainCamera.transform.position;
+        StartCoroutine(ResetYRotation()); // Start the coroutine to reset the camera's y rotation
+        StartCoroutine(Zoomcamera()); // Start the coroutine to zoom the camera
+    }
+    public void OutZoom()
+    {
+        CurrentPo = mainCamera.transform.position;
+        StartCoroutine(ResetYRotation());
+        StartCoroutine(Backcamera()); // Start the coroutine to zoom the camera
     }
     public IEnumerator Zoomcamera()
     {
-        mainCamera.fieldOfView = Mathf.MoveTowards(
-        mainCamera.fieldOfView,
-        Fov,
-        zoomSpeed * Time.deltaTime);
-
-        yield return new WaitForSeconds(2f);
+        while (elapsedTime < duration)
+        {
+            mainCamera.transform.position = Vector3.Lerp(CurrentPo, PoZoom1, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        mainCamera.transform.position = PoZoom1;
+        elapsedTime = 0;
 
     }
+    public IEnumerator Backcamera()
+    {
+        while (elapsedTime < duration)
+        {
+            mainCamera.transform.position = Vector3.Lerp(CurrentPo, PoStart, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        mainCamera.transform.position = PoStart;
+        elapsedTime = 0;
+    }
+
     IEnumerator ResetYRotation()
     {
         Quaternion targetRotation = Quaternion.Euler(
@@ -83,20 +102,4 @@ public class Camerascript : MonoBehaviour
 
         mainCamera.transform.rotation = targetRotation; // snap to final angle
     }
-    //IEnumerator FadeOut()
-    //{
-    //    float fadeDuration = 1f; // Duration of the fade out
-    //    float elapsed = 0f;
-    //    while (elapsed <= fadeDuration)
-    //    {
-    //        elapsed += Time.deltaTime;
-    //        myCanvasGroup.alpha = Mathf.Clamp01(elapsed / fadeDuration);
-    //        yield return null;
-    //    }
-
-    //    myCanvasGroup.alpha = 1f;
-    //    myCanvasGroup.interactable = false;
-    //    myCanvasGroup.blocksRaycasts = false;
-    //}
-
 }
