@@ -23,6 +23,8 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/BombScene.unity
   - m_enabled: 1
+    m_path: Assets/Bomb/end/end.unity
+  - m_enabled: 1
     m_path: Assets/All File/Main.unity
   - m_enabled: 1
     m_path: Assets/All File/Dayscene.unity

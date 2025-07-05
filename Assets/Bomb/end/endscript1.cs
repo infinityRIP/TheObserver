@@ -3,7 +3,7 @@ using UnityEngine.UI; // แก้ไขจาก UnityEngine.Ui เป็น UnityEngine.UI
 
 public class endscripts : MonoBehaviour
 {
-    public float scrollSpeed = 40f;
+    public float scrollSpeed = 70f;
 
     private RectTransform rectTransform; // แก้ไขจาก ReactTransform เป็น RectTransform
 
