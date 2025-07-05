@@ -31,10 +31,10 @@ public class Mousescript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
             currentY -= ySpeed * Time.deltaTime;
 
             // Clamp the angle to the maximum of -170 degrees
-            currentY = Mathf.Max(currentY, 170f);
+            currentY = Mathf.Max(currentY, 80f);
 
             // Apply the rotation if it's less than 170 degrees
-            if (currentY > -170f)
+            if (currentY > -80f)
             {
                 // Apply the rotation
                 screen.rotation = Quaternion.Euler(screen.eulerAngles.x, currentY, screen.eulerAngles.z);
@@ -42,17 +42,17 @@ public class Mousescript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
         }
         else
         {
-            if (currentY <= 180)
+            if (currentY <= 90)
             {
  
-                currentY = Mathf.MoveTowards(currentY, 180f, resetSpeed * Time.deltaTime);
+                currentY = Mathf.MoveTowards(currentY, 90f, resetSpeed * Time.deltaTime);
                 screen.rotation = Quaternion.Euler(screen.eulerAngles.x, currentY, screen.eulerAngles.z);
             }
 
 
 
         }
-        if (currentY == 180f)
+        if (currentY == 90f)
         {
             Rightbutton.SetActive(true); // Show the left button when the screen is at 180 degrees
         }

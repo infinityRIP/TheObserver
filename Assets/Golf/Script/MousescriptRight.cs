@@ -25,7 +25,7 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
             currentY += ySpeed * Time.deltaTime;
 
 
-            currentY = Mathf.Min(currentY, 190f);
+            currentY = Mathf.Min(currentY, 100f);
 
             if (currentY > -170f)
             {
@@ -35,17 +35,17 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
         }
         else
         {
-            if (currentY >= 180)
+            if (currentY >= 90f)
             {
 
-                currentY = Mathf.MoveTowards(currentY, 180f, resetSpeed * Time.deltaTime);
+                currentY = Mathf.MoveTowards(currentY, 90f, resetSpeed * Time.deltaTime);
                 screen.rotation = Quaternion.Euler(screen.eulerAngles.x, currentY, screen.eulerAngles.z);
             }
 
 
 
         }
-        if (currentY == 180f)
+        if (currentY == 90f)
         {
             leftbutton.SetActive(true); // Show the left button when the screen is at 180 degrees
         }
