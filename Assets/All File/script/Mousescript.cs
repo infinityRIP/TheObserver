@@ -5,55 +5,43 @@ using UnityEngine.EventSystems;
 
 public class Mousescript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 {
+    public MousescriptRight MSR;
     public Transform screen; // the screen or camera pivot
-    public float ySpeed = 20f; // degrees per second
+    public float ySpeed = 100f; // degrees per second
     public GameObject Rightbutton; // Reference to the left button
+    public float Times;
 
     private bool isHover = false;
     private float currentY;
-    public float resetSpeed = 20f;
+    public float resetSpeed = 10f;
 
 
     void Start()
     {
-        // Initialize currentY with the current y-angle of the screen
+        Times = Time.deltaTime;
         currentY = screen.eulerAngles.y;
-        if (currentY > 180f) currentY -= 360f; // Normalize to -180...180 range
     }
 
     void Update()
     {
         if (isHover)
         {
-            Rightbutton.SetActive(false); // Hide the right button when hovering over the left button
-            // Increment the currentY angle
-            currentY -= ySpeed * Time.deltaTime;
 
-            // Clamp the angle to the maximum of -170 degrees
-            currentY = Mathf.Max(currentY, 80f);
+            currentY -= ySpeed * Times;
+            currentY = Mathf.Max(currentY, 0f);
 
-            // Apply the rotation if it's less than 170 degrees
-            if (currentY > -80f)
+            if (currentY > -70f)
             {
-                // Apply the rotation
                 screen.rotation = Quaternion.Euler(screen.eulerAngles.x, currentY, screen.eulerAngles.z);
             }
         }
-        else
+        if (!isHover && currentY <= 90)
         {
-            if (currentY <= 90)
-            {
- 
-                currentY = Mathf.MoveTowards(currentY, 90f, resetSpeed * Time.deltaTime);
-                screen.rotation = Quaternion.Euler(screen.eulerAngles.x, currentY, screen.eulerAngles.z);
-            }
-
-
-
+            currentY += ySpeed * Times;
         }
-        if (currentY == 90f)
+
         {
-            Rightbutton.SetActive(true); // Show the left button when the screen is at 180 degrees
+            Rightbutton.SetActive(true);
         }
     }
 
@@ -61,10 +49,14 @@ public class Mousescript : MonoBehaviour,IPointerEnterHandler,IPointerExitHandle
     {
         if(e.pointerEnter != null && e.pointerEnter.gameObject.name == "Left")
         {
-            isHover = true; // Set the hover flag to true when the pointer enters
+            isHover = true;
         }
+
     }
-    public void OnPointerExit(PointerEventData e) => isHover = false;
+    public void OnPointerExit(PointerEventData e)
+    {
+        isHover = false;
+    }
 }
 
 

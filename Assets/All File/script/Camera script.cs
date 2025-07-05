@@ -8,14 +8,20 @@ using UnityEngine.UI;
 
 public class Camerascript : MonoBehaviour
 {
+    [Header("Object")]
+    public GameObject ChecklistToggle;
     [Header("Transform")]
     public GameObject StartPoint;
     public GameObject Zoom1;
     public GameObject Zoom2;
+    public GameObject ZoomCL;
     public Vector3 PoStart;
     public Vector3 PoZoom1;
     public Vector3 PoZoom2;
+    public Vector3 PoZoomCL;
     public Vector3 CurrentPo;
+    public Quaternion RoStart;
+    public Quaternion RoZoomCL;
     float elapsedTime = 0f;
     float duration = 0.3f; //
     [Header("Cam")]
@@ -35,7 +41,27 @@ public class Camerascript : MonoBehaviour
     bool isZoom;
     void Start()
     {
-        PoStart = StartPoint.transform.position;
+        ChecklistToggle.SetActive(false);
+
+        if (ZoomCL != null)
+        {
+            PoZoomCL = ZoomCL.transform.position;
+            RoZoomCL = ZoomCL.transform.rotation;
+        }
+        else
+        {
+            Debug.LogError("ZoomCL is not assigned!");
+        }
+        if (StartPoint != null)
+        {
+            PoStart = StartPoint.transform.position;
+            RoStart = StartPoint.transform.rotation;
+        }
+        else
+        {
+            Debug.LogError("StartPoint is not assigned!");
+        }
+
         PoZoom1 = Zoom1.transform.position;
         PoZoom2 = Zoom2.transform.position;
 
@@ -54,9 +80,19 @@ public class Camerascript : MonoBehaviour
     }
     public void OutZoom()
     {
+        ChecklistToggle.SetActive(false);
         CurrentPo = mainCamera.transform.position;
         StartCoroutine(ResetYRotation());
         StartCoroutine(Backcamera()); // Start the coroutine to zoom the camera
+    }
+    public void Checklist()
+    {
+        mainCamera.transform.position = ZoomCL.transform.position;
+        mainCamera.transform.rotation = ZoomCL.transform.rotation;
+        ChecklistToggle.SetActive(true);
+        CurrentPo = mainCamera.transform.position;
+        StartCoroutine(ResetYRotation());
+        mainCamera.transform.position = PoZoomCL;
     }
     public IEnumerator Zoomcamera()
     {
@@ -74,6 +110,7 @@ public class Camerascript : MonoBehaviour
     {
         while (elapsedTime < duration)
         {
+            mainCamera.transform.rotation = StartPoint.transform.rotation;
             mainCamera.transform.position = Vector3.Lerp(CurrentPo, PoStart, elapsedTime / duration);
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -84,11 +121,7 @@ public class Camerascript : MonoBehaviour
 
     IEnumerator ResetYRotation()
     {
-        Quaternion targetRotation = Quaternion.Euler(
-            mainCamera.transform.eulerAngles.x,
-            90f,
-            mainCamera.transform.eulerAngles.z
-        );
+        Quaternion targetRotation = Quaternion.Euler(mainCamera.transform.eulerAngles.x,90f,mainCamera.transform.eulerAngles.z);
 
         while (Quaternion.Angle(mainCamera.transform.rotation, targetRotation) > 0.1f)
         {

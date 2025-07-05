@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using UnityEditor.ShaderGraph.Internal;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+    public Mousescript MSL;
     public Transform screen;
     public GameObject leftbutton;
     public float ySpeed = 20f;
@@ -10,9 +12,11 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     private bool isHover = false;
     private float currentY;
+    public float Times;
 
     void Start()
     {
+        Times = Time.deltaTime;
         currentY = screen.eulerAngles.y;
     }
 
@@ -20,33 +24,20 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         if (isHover)
         {
-            // Increment the currentY angle
-            currentY += ySpeed * Time.deltaTime;
-
-
-            currentY = Mathf.Min(currentY, 100f);
+            currentY += ySpeed * Times;
+            currentY = Mathf.Min(currentY, 180f);
 
             if (currentY > -170f)
             {
-                // Apply the rotation
                 screen.rotation = Quaternion.Euler(screen.eulerAngles.x, currentY, screen.eulerAngles.z);
             }
         }
-        else
+        if (!isHover && currentY >= 90)
         {
-            if (currentY >= 90f)
-            {
-
-                currentY = Mathf.MoveTowards(currentY, 90f, resetSpeed * Time.deltaTime);
-                screen.rotation = Quaternion.Euler(screen.eulerAngles.x, currentY, screen.eulerAngles.z);
-            }
-
-
-
+            currentY -= ySpeed * Times;
         }
-        if (currentY == 90f)
         {
-            leftbutton.SetActive(true); // Show the left button when the screen is at 180 degrees
+            leftbutton.SetActive(true);
         }
     }
 
@@ -54,13 +45,12 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         if (e.pointerEnter != null && e.pointerEnter.gameObject.name == "Right")
         {
-            leftbutton.SetActive(false); // Hide the left button when hovering over the right button
-            isHover = true; // Set the hover flag to true when the pointer enters
+            isHover = true; 
         }
     }
-    public void OnPointerExit(PointerEventData e) {
-        isHover = false; // Set the hover flag to false when the pointer exits
-
+    public void OnPointerExit(PointerEventData e) 
+    {
+        isHover = false;
     }
 }
     
