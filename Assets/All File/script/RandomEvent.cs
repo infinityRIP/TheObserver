@@ -3,6 +3,7 @@ using UnityEngine.Video;
 using System.Collections;
 public class RandomEvent : Screen2Script
 {
+    public Power Pw;    
     void Start()
     {
         StartCoroutine(RandomEventLoop());
@@ -18,6 +19,7 @@ public class RandomEvent : Screen2Script
 
             if (chance < 30f)
             {
+                Pw.isPowerFast = true;
                 VideoPlayer.SetActive(true);
                 ToggleVideo();
             }

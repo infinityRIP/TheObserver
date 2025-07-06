@@ -6,6 +6,7 @@ public class Screen2Script : MonoBehaviour
 {
     public GameObject VideoPlayer;
     public VideoPlayer VP;
+    public bool isPowerFast = false;
     void Start()
     {
         VP = VideoPlayer.GetComponent<VideoPlayer>();
