@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 public class MainMenu : MonoBehaviour {
 
-    public string nextSceneName = "Main"; //àÍÒä¿Åì¨Ò¡àÁ¹
+    public string nextSceneName = "Main"; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò¡ï¿½ï¿½ï¿½
    
     public void PlayGame ()
     {
