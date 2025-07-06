@@ -3,7 +3,8 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using System.Collections; // ต้องมีเพื่อใช้ List
-using UnityEngine.SceneManagement; // สำหรับการจัดการ Scene
+using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal; // สำหรับการจัดการ Scene
 
 public class ActionChecker : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class ActionChecker : MonoBehaviour
     // กำหนดเกณฑ์ในการแสดงปุ่ม
     public int decisionThreshold = 2;
     public int criticalThreshold = 4;
+    public bool isDaypass;
 
     void Start()
     {
@@ -90,6 +92,7 @@ public class ActionChecker : MonoBehaviour
     }
     IEnumerator FadeIn() {
         actionPanel.SetActive(true); // แสดง Action Panel
+        isDaypass = true;
 
         float elapsed = 0f;
         while (elapsed < fadeDuration)

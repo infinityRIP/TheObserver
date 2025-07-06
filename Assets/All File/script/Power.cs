@@ -4,6 +4,7 @@ using TMPro;
 
 public class Power : MonoBehaviour
 {
+    public AudioSource NoPower;
     public GameObject Screen;
     public GameObject Rick;
     public Light light1;
@@ -38,7 +39,7 @@ public class Power : MonoBehaviour
                 UpdateText();
             } else if (isGen == true)
             {
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(0.2f);
                 PowerPoint = Mathf.Min(PowerPoint + 1, 100);
                 UpdateText();
             }
@@ -46,6 +47,7 @@ public class Power : MonoBehaviour
         if (PowerPoint <= 0)
         {
             PPText.text = "No Power!";
+            NoPower.Play();
             Light.intensity = 0f;
             light1.enabled = false;
             light2.enabled = false;
