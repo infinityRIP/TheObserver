@@ -309,7 +309,7 @@ MonoBehaviour:
   MSL: {fileID: 0}
   screen: {fileID: 1168999671}
   leftbutton: {fileID: 1609014946}
-  ySpeed: 20
+  ySpeed: 40
   resetSpeed: 80
   Times: 0
   currentY: 0
@@ -7870,7 +7870,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MSR: {fileID: 0}
   screen: {fileID: 1168999671}
-  ySpeed: 20
+  ySpeed: 40
   Rightbutton: {fileID: 116735648}
   Times: 0
   resetSpeed: 80
