@@ -6,6 +6,10 @@ public class Power : MonoBehaviour
 {
     public GameObject Screen;
     public GameObject Rick;
+    public Light light1;
+    public Light light2;
+    public Light light3;
+
     public Light Light;
     public TMP_Text PPText;
     public RandomEvent RnEv;
@@ -15,6 +19,7 @@ public class Power : MonoBehaviour
     public bool isGen = false;
     void Start()
     {
+        light3.enabled = false;
         Light.intensity = 0.2f;
         StartCoroutine(DecreaseEverySecond());
         UpdateText();
@@ -42,6 +47,9 @@ public class Power : MonoBehaviour
         {
             PPText.text = "No Power!";
             Light.intensity = 0f;
+            light1.enabled = false;
+            light2.enabled = false;
+            light3.enabled = true;
             Screen.SetActive(false);
             Rick.SetActive(false);
             RnEv.NoPower = true;
