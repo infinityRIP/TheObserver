@@ -1,10 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement; // Required for scene management in Unity Editor
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
+
 
 public class Camerascript : MonoBehaviour
 {
