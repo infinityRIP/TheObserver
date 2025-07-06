@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Screen2Script : MonoBehaviour
 {
+    public RandomEvent randomEvent;
     public GameObject VideoPlayer;
     public VideoPlayer VP;
     public bool isPowerFast = false;
@@ -15,7 +16,7 @@ public class Screen2Script : MonoBehaviour
 
     public void OnMouseDown()
     {
-        StopVideo();
+        StopVideo(); 
     }
     public void ToggleVideo()
     {
@@ -30,6 +31,10 @@ public class Screen2Script : MonoBehaviour
     }
     public void StopVideo()
     {
+        if (randomEvent != null)
+        {
+            randomEvent.isPowerFast = false;
+        }
         VideoPlayer.SetActive(false);
         ToggleVideo();
     }

@@ -24,7 +24,7 @@ public class Mousescript : MonoBehaviour, IPointerEnterHandler,IPointerExitHandl
 
     void Update()
     {
-        Debug.Log($"Left Y : {currentY}");
+        //Debug.Log($"Left Y : {currentY}");
         if (isHover)
         {
             currentY -= ySpeed * Times;

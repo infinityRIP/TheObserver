@@ -7,9 +7,6 @@ public class ClickableObject : MonoBehaviour
 {
     public Camerascript CS;
     public VideoPlayer videoPlayer;
-    void Start()
-    {
-    }
     public void OnMouseDown()
     {
         if (CS != null)

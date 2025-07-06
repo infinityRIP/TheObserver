@@ -1,37 +1,50 @@
 using System.Collections;
 using UnityEngine;
 using TMPro;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Power : MonoBehaviour
 {
+    public GameObject Screen;
+    public GameObject Rick;
+    public Light Light;
     public TMP_Text PPText;
     public RandomEvent RnEv;
     public int PowerPoint = 100;
-    public bool isPowerFast = false;
+    public float TnotRick = 2f;
+    public float TRick = 0.5f;
+    public bool isGen = false;
     void Start()
     {
+        Light.intensity = 0.2f;
         StartCoroutine(DecreaseEverySecond());
         UpdateText();
     }
 
-    void Update()
-    {
-    }
-
     IEnumerator DecreaseEverySecond()
     {
-        while (PowerPoint > 0)
+        while (PowerPoint > 0 )
         {
-            float waitTime = isPowerFast ? 0.3f : 1f;
-            yield return new WaitForSeconds(2f);
-            PowerPoint--;
-            UpdateText();
-            Debug.Log("Current value: " + PowerPoint);
+            if (isGen == false)
+            {
+                float waitTime = RnEv.isPowerFast ? TRick : TnotRick; // ถ้าเปิด ลดเร็วขึ้น
+
+                yield return new WaitForSeconds(waitTime);
+                PowerPoint--;
+                UpdateText();
+            } else if (isGen == true)
+            {
+                yield return new WaitForSeconds(0.1f);
+                PowerPoint = Mathf.Min(PowerPoint + 1, 100);
+                UpdateText();
+            }
         }
         if (PowerPoint <= 0)
         {
             PPText.text = "No Power!";
+            Light.intensity = 0f;
+            Screen.SetActive(false);
+            Rick.SetActive(false);
+            RnEv.NoPower = true;
             yield break;
         }
     }

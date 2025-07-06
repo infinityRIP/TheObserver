@@ -63,7 +63,6 @@ public class Camerascript : MonoBehaviour
         }
 
         PoZoom1 = Zoom1.transform.position;
-        PoZoom2 = Zoom2.transform.position;
 
         maingamecanvas.SetActive(true); // Show the main game canvas at the start
         myCanvasGroup.alpha = 0f;

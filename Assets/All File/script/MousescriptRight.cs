@@ -22,7 +22,7 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     void Update()
     {
-        Debug.LogWarning($"Right Y : {currentY}");
+        //Debug.LogWarning($"Right Y : {currentY}");
         if (isHover)
         {
             currentY += ySpeed * Times;
