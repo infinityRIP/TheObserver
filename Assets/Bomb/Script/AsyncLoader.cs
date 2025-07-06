@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class AsyncLoader : MonoBehaviour
 {
+    
     [Header("Menu Screens")]
     [SerializeField] private GameObject loadingScreen;
     [SerializeField] private GameObject mainMenu;
@@ -15,6 +16,11 @@ public class AsyncLoader : MonoBehaviour
     [Header("Loading Settings")]
     [SerializeField] private float minLoadTime = 2.0f; // Minimum time the loading screen will be displayed
     [SerializeField] private float sliderSpeed = 1f;   // Speed at which the slider animates
+    private void Start()
+    {
+        Debug.Log($"{Time.timeScale}"); // Log the current time scale
+        Debug.Log($"{Time.deltaTime}"); // Log the current time scale
+    }
 
     public void loadLevelBtn(string levelToLoad)
     {
@@ -61,5 +67,6 @@ public class AsyncLoader : MonoBehaviour
 
         // Allow the newly loaded scene to activate.
         loadOperation.allowSceneActivation = true;
+      
     }
 }

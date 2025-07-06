@@ -7,7 +7,7 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public Mousescript MSL;
     public Transform screen;
     public GameObject leftbutton;
-    public float ySpeed = 20f;
+    public float ySpeed = 40f;
     public float resetSpeed = 1f;
 
     private bool isHover = false;
@@ -25,7 +25,7 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
         //Debug.LogWarning($"Right Y : {currentY}");
         if (isHover)
         {
-            currentY += ySpeed * Times;
+            currentY += ySpeed * Time.deltaTime;
             currentY = Mathf.Min(currentY, 180f);
 
             if (currentY > -170f)
@@ -35,7 +35,7 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
         }
         if (!isHover && currentY >= 90)
         {
-            currentY -= ySpeed * Times;
+            currentY -= ySpeed * Time.deltaTime;
         }
     }
 

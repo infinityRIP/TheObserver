@@ -41,6 +41,8 @@ public class Camerascript : MonoBehaviour
     bool isZoom;
     void Start()
     {
+        Debug.Log($"{Time.timeScale}"); // Log the current time scale
+        Debug.Log($"{Time.deltaTime}"); // Log the current time scale
         ChecklistToggle.SetActive(false);
 
         if (ZoomCL != null)

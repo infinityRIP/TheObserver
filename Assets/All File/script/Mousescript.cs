@@ -27,7 +27,7 @@ public class Mousescript : MonoBehaviour, IPointerEnterHandler,IPointerExitHandl
         //Debug.Log($"Left Y : {currentY}");
         if (isHover)
         {
-            currentY -= ySpeed * Times;
+            currentY -= ySpeed * Time.deltaTime;
             currentY = Mathf.Max(currentY, 0f);
 
             if (currentY > -70f)
@@ -37,7 +37,7 @@ public class Mousescript : MonoBehaviour, IPointerEnterHandler,IPointerExitHandl
         }
         if (!isHover && currentY <= 90)
         {
-            currentY += ySpeed * Times;
+            currentY += ySpeed * Time.deltaTime;
         }
 
     }
