@@ -1,5 +1,4 @@
-﻿using UnityEditor.ShaderGraph.Internal;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler

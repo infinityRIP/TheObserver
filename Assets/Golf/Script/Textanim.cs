@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Xml;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 
 public class Textanim : MonoBehaviour
 {
+    public AudioSource DayChange;
     public float fallspeed = 100f;
     public TMP_Text number1;
     public TMP_Text number2;
@@ -25,6 +24,7 @@ public class Textanim : MonoBehaviour
 
     void Start()
     {
+        DayChange.Play();
         panelGroup.alpha = 0f;
         rect1 = number1.GetComponent<RectTransform>();
         rect2 = number2.GetComponent<RectTransform>();

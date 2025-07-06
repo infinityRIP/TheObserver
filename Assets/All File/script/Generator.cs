@@ -1,11 +1,9 @@
 using UnityEngine;
-using UnityEngine.Video;
 
 public class Generator : MonoBehaviour
 {
     public RandomEvent RnEv;
     public Power P;
-    public float holdTime = 1f;
 
     void Update()
     {
@@ -18,7 +16,7 @@ public class Generator : MonoBehaviour
             {
                 if (RnEv.isPowerFast == false)
                 {
-                   P.isGen = true;
+                    P.isGen = true;
                 }
             }
             else

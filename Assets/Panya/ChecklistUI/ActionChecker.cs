@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using System.Collections; // ต้องมีเพื่อใช้ List
 using UnityEngine.SceneManagement;
-using UnityEngine.Rendering.Universal; // สำหรับการจัดการ Scene
 
 public class ActionChecker : MonoBehaviour
 {
