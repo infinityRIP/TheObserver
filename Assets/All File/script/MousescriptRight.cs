@@ -4,6 +4,7 @@ using UnityEngine.EventSystems;
 public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Mousescript MSL;
+    public Camerascript Cs;
     public Transform screen;
     public GameObject leftbutton;
     public float ySpeed = 40f;
@@ -22,7 +23,7 @@ public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExi
     void Update()
     {
         //Debug.LogWarning($"Right Y : {currentY}");
-        if (isHover)
+        if (isHover && !Cs.isOnCheklist)
         {
             currentY += ySpeed * Time.deltaTime;
             currentY = Mathf.Min(currentY, 180f);

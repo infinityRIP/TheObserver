@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c2dd9c78c14a464399f9414deb750db, type: 3}
+  m_Name: Mr.T
+  m_EditorClassIdentifier: 
+  videoPrefab: {fileID: 3222992514588635437, guid: 97d914189f34286408d6a76ce09c0091, type: 3}
+  ChecklistPrefab: {fileID: 1436655808848470738, guid: e9b0b50ec4c57684eb9f4340f1f851f9, type: 3}
+  description: 

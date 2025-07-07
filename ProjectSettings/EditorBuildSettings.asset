@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/All File/Main Day 2.unity
+    path: Assets/All File/Day Scene/Main Day 2.unity
     guid: 5fdebcbf827769043b68d2eba8564669
   - enabled: 1
-    path: Assets/All File/Main.unity
+    path: Assets/All File/Day Scene/Main.unity
     guid: b029bd3d6d87f4b4a9f4053c6b2fe044
   - enabled: 1
     path: Assets/All File/Dayscene.unity

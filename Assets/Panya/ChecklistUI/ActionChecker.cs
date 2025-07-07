@@ -19,7 +19,6 @@ public class ActionChecker : MonoBehaviour
     // กำหนดเกณฑ์ในการแสดงปุ่ม
     public int decisionThreshold = 2;
     public int criticalThreshold = 4;
-    public bool isDaypass;
 
     void Start()
     {
@@ -90,7 +89,6 @@ public class ActionChecker : MonoBehaviour
     }
     IEnumerator FadeIn() {
         actionPanel.SetActive(true); // แสดง Action Panel
-        isDaypass = true;
 
         float elapsed = 0f;
         while (elapsed < fadeDuration)

@@ -34,7 +34,7 @@ public class Camerascript : MonoBehaviour
     public GameObject Panelfade; // Reference to the reset button
     public CanvasGroup myCanvasGroup;
     float camy;
-    bool isZoom;
+    public bool isOnCheklist = false;
     void Start()
     {
         Debug.Log($"{Time.timeScale}"); // Log the current time scale
@@ -66,9 +66,6 @@ public class Camerascript : MonoBehaviour
         myCanvasGroup.alpha = 0f;
         camy = mainCamera.transform.rotation.eulerAngles.y; // Store the initial y rotation of the camera
     }
-    private void Update()
-    {
-    }
     public void Zoom()
     {
         CurrentPo = mainCamera.transform.position;
@@ -77,6 +74,7 @@ public class Camerascript : MonoBehaviour
     }
     public void OutZoom()
     {
+        isOnCheklist = false;
         ChecklistToggle.SetActive(false);
         CurrentPo = mainCamera.transform.position;
         StartCoroutine(ResetYRotation());
@@ -84,9 +82,11 @@ public class Camerascript : MonoBehaviour
     }
     public void Checklist()
     {
+        isOnCheklist = true;
         mainCamera.transform.position = ZoomCL.transform.position;
         mainCamera.transform.rotation = ZoomCL.transform.rotation;
         ChecklistToggle.SetActive(true);
+        Debug.Log("Checklist Open!");
         CurrentPo = mainCamera.transform.position;
         StartCoroutine(ResetYRotation());
         mainCamera.transform.position = PoZoomCL;

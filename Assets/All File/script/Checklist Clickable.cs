@@ -8,7 +8,6 @@ public class ChecklistClickable : MonoBehaviour
     {
         if (CS != null)
         {
-            Debug.Log("Check list Open");
             CS.Checklist();
         }
     }

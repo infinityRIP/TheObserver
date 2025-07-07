@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +16,7 @@ public class Blinkingcode : MonoBehaviour
     public bool isAudioPlay;
     public bool hasStopped = false;
     bool hasPick = false;
+    bool AlreadPlay = false;
 
     void Start()
     {
@@ -53,20 +55,25 @@ public class Blinkingcode : MonoBehaviour
     }
     IEnumerator AfterDelay()
     {
-        Pickup.Play();
-        PC.Audio.Stop();
-        calling = false;
+        if (AlreadPlay == false)
+        {
+            Pickup.Play();
+            PC.Audio.Stop();
+            calling = false;
 
-        yield return new WaitForSeconds(2f);
-        Audio.Play();
-        hasPick = true;
+            yield return new WaitForSeconds(2f);
+            Audio.Play();
+            hasPick = true;
+        }
+        else yield break;
             
     }
 
     public void OnMouseDown()
     {
 
-         StartCoroutine(AfterDelay());
+        StartCoroutine(AfterDelay());
+        AlreadPlay = true;
 
     }
 

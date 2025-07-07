@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 public class Mousescript : MonoBehaviour, IPointerEnterHandler,IPointerExitHandler
 {
+    public Camerascript Cs;
     public MousescriptRight MSR;
     public Transform screen; // the screen or camera pivot
     public float ySpeed = 100f; // degrees per second
@@ -25,7 +26,7 @@ public class Mousescript : MonoBehaviour, IPointerEnterHandler,IPointerExitHandl
     void Update()
     {
         //Debug.Log($"Left Y : {currentY}");
-        if (isHover)
+        if (isHover && !Cs.isOnCheklist)
         {
             currentY -= ySpeed * Time.deltaTime;
             currentY = Mathf.Max(currentY, 0f);
