@@ -15,6 +15,7 @@ public class Blinkingcode : MonoBehaviour
     public bool isAudioPlay;
     public bool hasStopped = false;
     bool hasPick = false;
+    bool pangyatalking = false;
 
     void Start()
     {
@@ -53,13 +54,19 @@ public class Blinkingcode : MonoBehaviour
     }
     IEnumerator AfterDelay()
     {
-        Pickup.Play();
-        PC.Audio.Stop();
-        calling = false;
+        if (pangyatalking == false)
+        {
+            pangyatalking = true;
+            Pickup.Play();
+            PC.Audio.Stop();
+            calling = false;
 
-        yield return new WaitForSeconds(2f);
-        Audio.Play();
-        hasPick = true;
+            yield return new WaitForSeconds(2f);
+            Audio.Play();
+            hasPick = true;
+            yield return new WaitForSeconds(66f);
+            pangyatalking = false;
+        }
             
     }
 

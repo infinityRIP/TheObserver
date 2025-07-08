@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Generator : MonoBehaviour
@@ -16,6 +17,7 @@ public class Generator : MonoBehaviour
             {
                 if (RnEv.isPowerFast == false)
                 {
+
                     P.isGen = true;
                 }
             }
@@ -29,4 +31,7 @@ public class Generator : MonoBehaviour
             P.isGen = false;
         }
     }
+
+    
 }
+

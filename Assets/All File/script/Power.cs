@@ -5,6 +5,7 @@ using UnityEngine;
 public class Power : MonoBehaviour
 {
     public AudioSource NoPower;
+    public AudioSource GenSound;
     public GameObject Screen;
     public GameObject Rick;
     public Light light1;
@@ -26,6 +27,10 @@ public class Power : MonoBehaviour
         UpdateText();
     }
 
+    private void Update()
+    {
+    }
+
     IEnumerator DecreaseEverySecond()
     {
         while (PowerPoint > 0 )
@@ -37,11 +42,16 @@ public class Power : MonoBehaviour
                 yield return new WaitForSeconds(waitTime);
                 PowerPoint--;
                 UpdateText();
+                GenSound.Stop(); // Stop the generator sound when power is not being generated
             } else if (isGen == true)
             {
                 yield return new WaitForSeconds(0.2f);
                 PowerPoint = Mathf.Min(PowerPoint + 1, 100);
                 UpdateText();
+                if (!GenSound.isPlaying) {
+                    GenSound.PlayOneShot(GenSound.clip); // Play the generator sound when power is generated
+
+                }
             }
         }
         if (PowerPoint <= 0)
