@@ -1,9 +1,21 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class DayManager : MonoBehaviour
 {
+    [Header("Object")]
+    public GameObject EventSystem;
+    private GameObject currentVideoObj;
+    private GameObject currentChecklistUI;
+    [Header("Pos")]
+    public GameObject Screen;
+    public Vector3 ScreenPo;
+    public Quaternion ScreenRo;
+    [Header("Script")]
+    public ClickableObject Co;
     public Camerascript Cs;
     public ActionChecker Ac;
     [Header("VDOData")]
@@ -27,6 +39,9 @@ public class DayManager : MonoBehaviour
     }
     void Start()
     {
+        ScreenPo = Screen.transform.position;
+        ScreenRo = Screen.transform.rotation;
+
         if (allVDOData.Length == 0)
         {
             Debug.LogWarning("ยังไม่มี VDOData ให้สุ่มเลย!");
@@ -38,28 +53,45 @@ public class DayManager : MonoBehaviour
 
     public void ShowRandomVDOAndChecklist()
     {
+        if (currentVideoObj != null)
+        {
+            Destroy(currentVideoObj);
+            currentVideoObj = null;
+        }
+
+        if (currentChecklistUI != null)
+        {
+            Destroy(currentChecklistUI);
+            currentChecklistUI = null;
+        }
+
         if (allVDOData.Length == 0 || uiCanvasParent == null) return;
 
-        // สุ่ม ScriptableObject ตัวเดียว
         selectedVDOData = allVDOData[Random.Range(0, allVDOData.Length)];
-        selectedChecklistData = selectedVDOData; // ใช้ตัวเดียวกัน
+        selectedChecklistData = selectedVDOData;
 
         Debug.Log("สุ่มได้: " + selectedVDOData.name);
 
-        // Instantiate วิดีโอ
         if (selectedVDOData.videoPrefab != null)
         {
-            Instantiate(selectedVDOData.videoPrefab, transform);
-        }
+            Debug.Log("Spawn Now");
+            currentVideoObj = Instantiate(selectedVDOData.videoPrefab, ScreenPo , ScreenRo);
+            Co = currentVideoObj.GetComponent<ClickableObject>();
 
-        // Instantiate Checklist UI
+            Camerascript camScript = EventSystem.GetComponentInChildren<Camerascript>();
+            if (camScript != null)
+            {
+                Co.CS = camScript;
+                Debug.Log("ดึง Camerascript สำเร็จ");
+            }else Debug.Log("ดึง Camerascript ไมได้");
+        }
         if (selectedChecklistData.ChecklistPrefab != null)
         {
-            GameObject checklistUI = Instantiate(selectedChecklistData.ChecklistPrefab, uiCanvasParent);
-            checklistUI.SetActive(false); // ซ่อนไว้ก่อน หรือเปิดเลยตามต้องการ
-            Cs.ChecklistToggle = checklistUI;
+            currentChecklistUI = Instantiate(selectedChecklistData.ChecklistPrefab, uiCanvasParent);
+            Cs.ChecklistToggle = currentChecklistUI;
+            currentChecklistUI.SetActive(false); 
 
-            Button[] buttons = checklistUI.GetComponentsInChildren<Button>(true);
+            Button[] buttons = currentChecklistUI.GetComponentsInChildren<Button>(true);
 
             foreach (Button btn in buttons)
             {
@@ -71,7 +103,7 @@ public class DayManager : MonoBehaviour
                 else if (btn.name == "Report")
                 {
                     Ac.reportButton = btn;
-                    Ac.reportButton.onClick.AddListener(() => Ac.ReportActions());
+                    Ac.reportButton.gameObject.SetActive(false);
                 }
             }
 
@@ -84,10 +116,9 @@ public class DayManager : MonoBehaviour
             else
                 Ac.reportButton.onClick.AddListener(() => Ac.ReportActions());
 
-            Toggle[] toggles = checklistUI.GetComponentsInChildren<Toggle>(true);
+            Toggle[] toggles = currentChecklistUI.GetComponentsInChildren<Toggle>(true);
             Ac.actionToggles = new List<Toggle>(toggles);
 
-            //เพิ่ม Listener ให้ Toggle ทุกตัว (เหมือนใน Start())
             foreach (Toggle toggle in Ac.actionToggles)
             {
                 toggle.onValueChanged.AddListener(delegate { Ac.SendMessage("CheckActions"); });

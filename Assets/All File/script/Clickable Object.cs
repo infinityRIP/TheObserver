@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -14,6 +12,14 @@ public class ClickableObject : MonoBehaviour
             CS.Zoom();
             ToggleVideo();
         }
+        else Debug.LogError("No CameraScript");
+
+        if (videoPlayer != null)
+        {
+
+        }
+        else Debug.LogError("No CameraScript");
+
     }
     public void ToggleVideo()
     {
