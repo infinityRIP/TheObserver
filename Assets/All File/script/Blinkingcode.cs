@@ -1,10 +1,12 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.LightTransport;
 using UnityEngine.SceneManagement;
 
 public class Blinkingcode : MonoBehaviour
 {
+    public RandomCall Rc;
     public ActionChecker AC;
     public Renderer rend;
     public PhoneCall PC;
@@ -20,12 +22,6 @@ public class Blinkingcode : MonoBehaviour
 
     void Start()
     {
-        string currentScene = SceneManager.GetActiveScene().name;
-
-        if (currentScene == "Main Day 2")
-        {
-            hasStopped = true;
-        }
         calling = false;
         isAudioPlay = Audio.isPlaying;
         // Make sure emission is enabled
@@ -55,11 +51,11 @@ public class Blinkingcode : MonoBehaviour
     }
     IEnumerator AfterDelay()
     {
-        if (AlreadPlay == false)
+        if (AlreadPlay == false && DayManager.Instance.Day == 1)
         {
-            Pickup.Play();
             PC.Audio.Stop();
-            calling = false;
+            AlreadPlay = true;
+            Pickup.Play();
 
             yield return new WaitForSeconds(2f);
             Audio.Play();
@@ -71,9 +67,16 @@ public class Blinkingcode : MonoBehaviour
 
     public void OnMouseDown()
     {
-
-        StartCoroutine(AfterDelay());
-        AlreadPlay = true;
+        if (calling == true)
+        {
+            StartCoroutine(AfterDelay());
+        }
+        if (Rc.isNowPlayingRandom == false && calling == true)
+        {
+            Rc.PlayRandomSound();
+        }
+        if (calling == true)
+            calling = false;
 
     }
 

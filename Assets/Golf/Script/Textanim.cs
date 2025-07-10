@@ -82,7 +82,7 @@ public class Textanim : MonoBehaviour
         // Make sure it's fully invisible at the end
         tmpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1f);
         tmpText2.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1f);
-        SceneManager.LoadScene("Main Day 2"); // Change to the desired scene
+        SceneManager.LoadScene("Day 2"); // Change to the desired scene
     }
     IEnumerator FadeIN()
     {
@@ -105,7 +105,7 @@ public class Textanim : MonoBehaviour
         // Make sure it's fully invisible at the end
         tmpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
         tmpText2.color = new Color(originalColor.r, originalColor.g, originalColor.b, 0f);
-        SceneManager.LoadScene("Main Day 2"); // Change to the desired scene
+        SceneManager.LoadScene("Day 2"); // Change to the desired scene
         FinishFade = true;
 
     }

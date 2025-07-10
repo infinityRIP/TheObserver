@@ -1,11 +1,12 @@
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
 using System.Collections; // ต้องมีเพื่อใช้ List
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ActionChecker : MonoBehaviour
 {
+    public DayManager DM;
     // ลาก Toggle ทั้งหมดจาก Hierarchy มาใส่ใน List นี้ผ่าน Inspector
     public List<Toggle> actionToggles;
     public CanvasGroup canvasGroup;
@@ -22,6 +23,8 @@ public class ActionChecker : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Day " + DayManager.Instance.Day);
+        DM.DayText.text = "Day: " + DM.Day.ToString();
         actionPanel.SetActive(false); // แสดง Action Panel เมื่อเริ่มเกม
         canvasGroup.alpha = 0f;
         canvasGroup.interactable = false;
@@ -84,8 +87,8 @@ public class ActionChecker : MonoBehaviour
         }
         StartCoroutine(FadeIn());
 
-
-
+        DayManager.Instance.Day += 1;
+        Debug.Log("Day" + DayManager.Instance.Day);
     }
     IEnumerator FadeIn() {
         actionPanel.SetActive(true); // แสดง Action Panel
@@ -105,8 +108,6 @@ public class ActionChecker : MonoBehaviour
         yield return new WaitForSeconds(1f); // รอ 2 วินาที
         SceneManager.LoadScene("Dayscene"); // เปลี่ยนไปยัง Scene ที่ต้องการ
     }
-
-
 }
 
 

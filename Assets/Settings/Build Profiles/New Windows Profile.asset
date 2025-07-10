@@ -25,11 +25,11 @@ MonoBehaviour:
   - m_enabled: 1
     m_path: Assets/Bomb/end/end.unity
   - m_enabled: 1
+    m_path: Assets/All File/Day Scene/Main.unity
+  - m_enabled: 1
     m_path: Assets/All File/Dayscene.unity
   - m_enabled: 1
-    m_path: Assets/All File/Main.unity
-  - m_enabled: 1
-    m_path: Assets/All File/Main Day 2.unity
+    m_path: Assets/All File/Day Scene/Day 2.unity
   - m_enabled: 1
     m_path: Assets/All File/Ending.unity
   m_ScriptingDefines:

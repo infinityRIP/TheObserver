@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 
 public class MousescriptRight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
+
     public Mousescript MSL;
     public Camerascript Cs;
     public Transform screen;

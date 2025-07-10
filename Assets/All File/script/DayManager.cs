@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Video;
 
 public class DayManager : MonoBehaviour
 {
@@ -10,6 +9,7 @@ public class DayManager : MonoBehaviour
     public GameObject EventSystem;
     private GameObject currentVideoObj;
     private GameObject currentChecklistUI;
+    public TMP_Text DayText;
     [Header("Pos")]
     public GameObject Screen;
     public Vector3 ScreenPo;
@@ -24,6 +24,7 @@ public class DayManager : MonoBehaviour
     private VDOData selectedChecklistData;
     public Transform uiCanvasParent;
     public static DayManager Instance;
+    public int Day = 1;
 
     void Awake()
     {
@@ -32,10 +33,10 @@ public class DayManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        else
-        {
-            Destroy(gameObject);
-        }
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
     }
     void Start()
     {
@@ -48,9 +49,8 @@ public class DayManager : MonoBehaviour
             return;
         }
         ShowRandomVDOAndChecklist();
-
+        Ac.DM = this;
     }
-
     public void ShowRandomVDOAndChecklist()
     {
         if (currentVideoObj != null)

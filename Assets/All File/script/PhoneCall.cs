@@ -12,7 +12,11 @@ public class PhoneCall : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(PlayAfterDelay());
+        if (DayManager.Instance.Day == 1)
+        {
+            StartCoroutine(PlayAfterDelay());
+        }
+        
     }
 
     IEnumerator PlayAfterDelay()
@@ -20,9 +24,9 @@ public class PhoneCall : MonoBehaviour
         if (isPlayed == false)
         {
             yield return new WaitForSeconds(2f);
-            Audio.Play();
             isPlayed = true;
             Bc.calling = true;
+            Audio.Play();
         }
     }
 }
