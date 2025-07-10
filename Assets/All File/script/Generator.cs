@@ -4,6 +4,7 @@ public class Generator : MonoBehaviour
 {
     public RandomEvent RnEv;
     public Power P;
+    public AudioSource GenSound;
 
     void Update()
     {
@@ -17,16 +18,23 @@ public class Generator : MonoBehaviour
                 if (RnEv.isPowerFast == false)
                 {
                     P.isGen = true;
+                    if (!GenSound.isPlaying)
+                    {
+                        Debug.LogWarning("genSound is playing");
+                        GenSound.Play();
+                    }
                 }
             }
             else
             {
                 P.isGen = false;
+                GenSound.Stop();
             }
         }
         else
         {
             P.isGen = false;
+            GenSound.Stop();
         }
     }
 }

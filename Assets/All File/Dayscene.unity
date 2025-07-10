@@ -289,7 +289,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 663.4147, y: 648}
+  m_AnchoredPosition: {x: 663.4147, y: 1285}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &764229781
@@ -820,13 +820,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DayChange: {fileID: 1359223227}
-  fallspeed: 300
+  fallspeed: 550
   number1: {fileID: 920161947}
   number2: {fileID: 764229781}
   tmpText: {fileID: 222095291}
   tmpText2: {fileID: 764229781}
   fadeDuration: 1
-  limit1: -1000
+  limit1: -5000
   limit2: -8.5
   FinishFade: 0
   panelGroup: {fileID: 1575360916}

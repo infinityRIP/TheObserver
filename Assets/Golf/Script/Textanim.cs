@@ -16,6 +16,8 @@ public class Textanim : MonoBehaviour
     public float limit2 = -300f; // Y limit for number2
     public bool FinishFade =false;
     public CanvasGroup panelGroup;
+    int Day;
+    int BeforeDay;
 
     private bool isFalling = false;
 
@@ -24,6 +26,10 @@ public class Textanim : MonoBehaviour
 
     void Start()
     {
+        Day = DayManager.Instance.Day;
+        BeforeDay = Day -= 1;
+        number1.text = BeforeDay.ToString();
+        number2.text = DayManager.Instance.Day.ToString();
         DayChange.Play();
         panelGroup.alpha = 0f;
         rect1 = number1.GetComponent<RectTransform>();
@@ -36,6 +42,7 @@ public class Textanim : MonoBehaviour
 
     void Update()
     {
+        
         // number1 falls immediately
         if (rect1.anchoredPosition.y > limit1 && FinishFade == true)
         {
