@@ -363,7 +363,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 379.53, y: 0.0026550293}
+  m_AnchoredPosition: {x: 379.53003, y: 0.0026855469}
   m_SizeDelta: {x: -759.07, y: -396.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &201097630
@@ -416,10 +416,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dcfa924efdc4494d85766609fae0209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MSL: {fileID: 0}
+  Cs: {fileID: 0}
   screen: {fileID: 1077787364}
   leftbutton: {fileID: 590255878}
   ySpeed: 20
   resetSpeed: 20
+  Times: 0
+  currentY: 0
 --- !u!1 &319241213
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,14 +455,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f08cf51315b3f74fb3a4740ca470d34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ChecklistToggle: {fileID: 0}
+  StartPoint: {fileID: 0}
+  Zoom1: {fileID: 0}
+  Zoom2: {fileID: 0}
+  ZoomCL: {fileID: 0}
+  PoStart: {x: 0, y: 0, z: 0}
+  PoZoom1: {x: 0, y: 0, z: 0}
+  PoZoom2: {x: 0, y: 0, z: 0}
+  PoZoomCL: {x: 0, y: 0, z: 0}
+  CurrentPo: {x: 0, y: 0, z: 0}
+  RoStart: {x: 0, y: 0, z: 0, w: 0}
+  RoZoomCL: {x: 0, y: 0, z: 0, w: 0}
   isCameraZoom: 0
   mainCamera: {fileID: 1077787363}
-  Screenzoom: {fileID: 1189156807}
+  backbutton: {fileID: 0}
   leftbutton: {fileID: 590255878}
   rightbutton: {fileID: 201097628}
   maingamecanvas: {fileID: 1021690081}
-  zoomSpeed: 50
   rotateSpeed: 100
+  Fov: 90
+  Panelfade: {fileID: 0}
+  myCanvasGroup: {fileID: 0}
+  isOnCheklist: 0
 --- !u!114 &319241215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,10 +735,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5350ce739e8442f459f8cbcebf024ecc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Cs: {fileID: 0}
+  MSR: {fileID: 0}
   screen: {fileID: 1077787364}
   ySpeed: 20
   Rightbutton: {fileID: 201097628}
+  Times: 0
   resetSpeed: 20
+  currentY: 0
 --- !u!1 &762487723
 GameObject:
   m_ObjectHideFlags: 0
