@@ -782,6 +782,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EventSystem: {fileID: 1081605289}
+  isMrP: 0
+  isMrT: 0
   DayText: {fileID: 519295696}
   Screen: {fileID: 884976860}
   ScreenPo: {x: 0, y: 0, z: 0}
@@ -4229,6 +4231,7 @@ GameObject:
   - component: {fileID: 1081605296}
   - component: {fileID: 1081605297}
   - component: {fileID: 1081605298}
+  - component: {fileID: 1081605299}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -4403,6 +4406,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Bc: {fileID: 1798476854}
   Audio: {fileID: 1798476855}
+--- !u!114 &1081605299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081605289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e0edb2bbc84ada43a8fd9fcf753f4e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCorrectDay1: 0
+  isCorrectDay2: 0
+  isCorrectDay3: 0
+  isCorrectDay4: 0
+  isCorrectDay5: 0
 --- !u!1 &1118792312
 GameObject:
   m_ObjectHideFlags: 0
