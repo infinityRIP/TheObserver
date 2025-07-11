@@ -9,6 +9,8 @@ public class DayManager : MonoBehaviour
     public GameObject EventSystem;
     private GameObject currentVideoObj;
     private GameObject currentChecklistUI;
+    public bool isMrP = false;
+    public bool isMrT = false;
     public TMP_Text DayText;
     [Header("Pos")]
     public GameObject Screen;
@@ -69,8 +71,23 @@ public class DayManager : MonoBehaviour
 
         selectedVDOData = allVDOData[Random.Range(0, allVDOData.Length)];
         selectedChecklistData = selectedVDOData;
+        switch (selectedVDOData.name){ 
+            case "Mr.P":
+                isMrP = true;
+                isMrT = false;
+                break;
+            case "Mr.T":
+                isMrP = false;
+                isMrT = true;
+                break;
+            default:
+                isMrP = false;
+                isMrT = false;
+                break;
+        }
 
-        Debug.Log("สุ่มได้: " + selectedVDOData.name);
+
+
 
         if (selectedVDOData.videoPrefab != null)
         {
