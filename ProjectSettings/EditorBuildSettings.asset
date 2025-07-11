@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/All File/Day Scene/Main Day 2.unity
-    guid: 5fdebcbf827769043b68d2eba8564669
-  - enabled: 1
     path: Assets/All File/Day Scene/Main.unity
     guid: b029bd3d6d87f4b4a9f4053c6b2fe044
   - enabled: 1
@@ -23,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Bomb/end/end.unity
     guid: 036c40d03c621604c911afed5d7cb545
+  - enabled: 1
+    path: Assets/All File/Day Scene/Day 2.unity
+    guid: 5b5864936137c244bb6bba771fa45e20
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
