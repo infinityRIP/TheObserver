@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Video;
-using System.Collections;
 
 public class Screen2Script : MonoBehaviour
 {

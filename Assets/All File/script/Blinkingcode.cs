@@ -1,8 +1,5 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.LightTransport;
-using UnityEngine.SceneManagement;
 
 public class Blinkingcode : MonoBehaviour
 {

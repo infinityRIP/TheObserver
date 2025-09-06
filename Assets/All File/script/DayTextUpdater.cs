@@ -4,7 +4,6 @@ using System.Collections;
 
 public class DayTextUpdater : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     IEnumerator Start()
     {
         yield return new WaitForSeconds(0.1f); // รอให้ Instance และ DayText ถูก Assign

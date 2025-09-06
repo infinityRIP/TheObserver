@@ -21,11 +21,21 @@ public class ActionChecker : MonoBehaviour
     // กำหนดเกณฑ์ในการแสดงปุ่ม
     public int decisionThreshold = 2;
     public int criticalThreshold = 4;
+    public bool IsActionCorrect()
+    {
+        bool[] currentToggleStates = new bool[actionToggles.Count];
+
+        for (int i = 0; i < 4; i++)
+        {
+            currentToggleStates[i] = actionToggles[i].isOn;
+        }
+
+        return DM.selectedChecklistData.MatchesToggles(currentToggleStates);
+    }
 
     void Start()
     {
         Debug.Log("Day " + DayManager.Instance.Day);
-        DM.DayText.text = "Day: " + DM.Day.ToString();
         actionPanel.SetActive(false); // แสดง Action Panel เมื่อเริ่มเกม
         canvasGroup.alpha = 0f;
         canvasGroup.interactable = false;
@@ -81,136 +91,12 @@ public class ActionChecker : MonoBehaviour
 
     public void ReportActions()
     {
-        if (DM.isMrT == false && DM.isMrP == true)
-        {
-            if(actionToggles[0].isOn && actionToggles[2].isOn && !actionToggles[1].isOn && !actionToggles[3].isOn)
-            {
-                switch(DayManager.Instance.Day)
-                {
-                    case 1:
-                        Daycorrectchecker.correct.isCorrectDay1 = true;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันแรก");
-                        break;
-                    case 2:
-                        Daycorrectchecker.correct.isCorrectDay2 = true;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สอง");
-                        break;
-                    case 3:
-                        Daycorrectchecker.correct.isCorrectDay3 = true;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
-                        break;
-                    case 4:
-                        Daycorrectchecker.correct.isCorrectDay4 = true;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
-                        break;
-                    case 5:
-                        Daycorrectchecker.correct.isCorrectDay5 = true;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
-                        break;
-                    default:
-                        Debug.Log("ไม่พบข้อมูลสำหรับวันนี้");
-                        break;
-                }
-
-            }
-            else
-            {
-                switch (DayManager.Instance.Day)
-                {
-                    case 1:
-                        Daycorrectchecker.correct.isCorrectDay1 = false;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันแรก");
-                        break;
-                    case 2:
-                        Daycorrectchecker.correct.isCorrectDay2 = false;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สอง");
-                        break;
-                    case 3:
-                        Daycorrectchecker.correct.isCorrectDay3 = false;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
-                        break;
-                    case 4:
-                        Daycorrectchecker.correct.isCorrectDay4 = false;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
-                        break;
-                    case 5:
-                        Daycorrectchecker.correct.isCorrectDay5 = false;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
-                        break;
-                    default:
-                        Debug.Log("ไม่พบข้อมูลสำหรับวันนี้");
-                        break;
-                }
-            }
-
-        }
-        if (DM.isMrT == true && DM.isMrP == false)
-        {
-            if (actionToggles[0].isOn && actionToggles[2].isOn && !actionToggles[1].isOn && actionToggles[3].isOn)
-            {
-                switch (DayManager.Instance.Day)
-                {
-                    case 1:
-                        Daycorrectchecker.correct.isCorrectDay1 = true;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันแรก");
-                        break;
-                    case 2:
-                        Daycorrectchecker.correct.isCorrectDay2 = true;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สอง");
-                        break;
-                    case 3:
-                        Daycorrectchecker.correct.isCorrectDay3 = true;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
-                        break;
-                    case 4:
-                        Daycorrectchecker.correct.isCorrectDay4 = true;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
-                        break;
-                    case 5:
-                        Daycorrectchecker.correct.isCorrectDay5 = true;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
-                        break;
-                    default:
-                        Debug.Log("ไม่พบข้อมูลสำหรับวันนี้");
-                        break;
-                }
-
-            }
-            else
-            {
-                switch (DayManager.Instance.Day)
-                {
-                    case 1:
-                        Daycorrectchecker.correct.isCorrectDay1 = false;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันแรก");
-                        break;
-                    case 2:
-                        Daycorrectchecker.correct.isCorrectDay2 = false;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สอง");
-                        break;
-                    case 3:
-                        Daycorrectchecker.correct.isCorrectDay3 = false;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
-                        break;
-                    case 4:
-                        Daycorrectchecker.correct.isCorrectDay4 = false;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
-                        break;
-                    case 5:
-                        Daycorrectchecker.correct.isCorrectDay5 = false;
-                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
-                        break;
-                    default:
-                        Debug.Log("ไม่พบข้อมูลสำหรับวันนี้");
-                        break;
-                }
-            }
-
-        }
+        CheckChecklist();
         StartCoroutine(FadeIn());
 
         DayManager.Instance.Day += 1;
         Debug.Log("Day" + DayManager.Instance.Day);
+        DayManager.Instance.End();
     }
 
 
@@ -231,6 +117,137 @@ public class ActionChecker : MonoBehaviour
         canvasGroup.blocksRaycasts = true;
         yield return new WaitForSeconds(1f); // รอ 2 วินาที
         SceneManager.LoadScene("Dayscene"); // เปลี่ยนไปยัง Scene ที่ต้องการ
+    }
+
+    public void CheckChecklist()
+    {
+        if (DM.ID == 1)
+        {
+            //DM.selectedChecklistData.Check1 == true && DM.selectedChecklistData.Check3 == true
+            if (IsActionCorrect())
+            {
+                switch (DayManager.Instance.Day)
+                {
+                    case 1:
+                        Daycorrectchecker.correct.isCorrectDay1 = true;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันแรก");
+                        break;
+                    case 2:
+                        Daycorrectchecker.correct.isCorrectDay2 = true;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สอง");
+                        break;
+                    case 3:
+                        Daycorrectchecker.correct.isCorrectDay3 = true;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
+                        break;
+                    case 4:
+                        Daycorrectchecker.correct.isCorrectDay4 = true;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
+                        break;
+                    case 5:
+                        Daycorrectchecker.correct.isCorrectDay5 = true;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P สำเร็จในวันที่สาม");
+                        break;
+                    default:
+                        Debug.Log("ไม่พบข้อมูลสำหรับวันนี้");
+                        break;
+                }
+
+            }
+            else
+            {
+                switch (DayManager.Instance.Day)
+                {
+                    case 1:
+                        Daycorrectchecker.correct.isCorrectDay1 = false;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P ไม่สำเร็จในวันแรก");
+                        break;
+                    case 2:
+                        Daycorrectchecker.correct.isCorrectDay2 = false;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P ไม่สำเร็จในวันที่สอง");
+                        break;
+                    case 3:
+                        Daycorrectchecker.correct.isCorrectDay3 = false;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P ไม่สำเร็จในวันที่สาม");
+                        break;
+                    case 4:
+                        Daycorrectchecker.correct.isCorrectDay4 = false;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P ไม่สำเร็จในวันที่สาม");
+                        break;
+                    case 5:
+                        Daycorrectchecker.correct.isCorrectDay5 = false;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.P ไม่สำเร็จในวันที่สาม");
+                        break;
+                    default:
+                        Debug.Log("ไม่พบข้อมูลสำหรับวันนี้");
+                        break;
+                }
+            }
+
+        }
+        if (DM.ID == 2)
+        {
+            if (IsActionCorrect())
+            {
+                switch (DayManager.Instance.Day)
+                {
+                    case 1:
+                        Daycorrectchecker.correct.isCorrectDay1 = true;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.T สำเร็จในวันแรก");
+                        break;
+                    case 2:
+                        Daycorrectchecker.correct.isCorrectDay2 = true;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.T สำเร็จในวันที่สอง");
+                        break;
+                    case 3:
+                        Daycorrectchecker.correct.isCorrectDay3 = true;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.T สำเร็จในวันที่สาม");
+                        break;
+                    case 4:
+                        Daycorrectchecker.correct.isCorrectDay4 = true;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.T สำเร็จในวันที่สาม");
+                        break;
+                    case 5:
+                        Daycorrectchecker.correct.isCorrectDay5 = true;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.T สำเร็จในวันที่สาม");
+                        break;
+                    default:
+                        Debug.Log("ไม่พบข้อมูลสำหรับวันนี้");
+                        break;
+                }
+
+            }
+            else
+            {
+                switch (DayManager.Instance.Day)
+                {
+                    case 1:
+                        Daycorrectchecker.correct.isCorrectDay1 = false;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.T ไม่สำเร็จในวันแรก");
+                        break;
+                    case 2:
+                        Daycorrectchecker.correct.isCorrectDay2 = false;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.T ไม่สำเร็จในวันที่สอง");
+                        break;  
+                    case 3:
+                        Daycorrectchecker.correct.isCorrectDay3 = false;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.T ไม่สำเร็จในวันที่สาม");
+                        break;
+                    case 4:
+                        Daycorrectchecker.correct.isCorrectDay4 = false;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.T ไม่สำเร็จในวันที่สาม");
+                        break;
+                    case 5:
+                        Daycorrectchecker.correct.isCorrectDay5 = false;
+                        Debug.Log("รายงานการกระทำที่น่าสงสัยของ Mr.T ไม่สำเร็จในวันที่สาม");
+                        break;
+                    default:
+                        Debug.Log("ไม่พบข้อมูลสำหรับวันนี้");
+                        break;
+                }
+            }
+
+        }
     }
 }
 

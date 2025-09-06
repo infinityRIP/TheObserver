@@ -23,7 +23,7 @@ public class PhoneCall : MonoBehaviour
     {
         if (isPlayed == false)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(5f);
             isPlayed = true;
             Bc.calling = true;
             Audio.Play();

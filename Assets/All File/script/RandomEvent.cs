@@ -19,11 +19,11 @@ public class RandomEvent : Screen2Script
         VP.Prepare();
         while (true)
         {
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(10f);
 
             float chance = Random.Range(0f, 100f);
 
-            if (chance < 30f && NoPower == false && BC.hasStopped == true)
+            if (chance < 10f && NoPower == false && BC.hasStopped == true)
             {
                 isPowerFast = true;
                 VideoPlayer.SetActive(true);

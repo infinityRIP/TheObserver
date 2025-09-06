@@ -15,7 +15,7 @@ public class RandomCall : MonoBehaviour
 
     void Start()
     {
-        if (DayManager.Instance.Day != 1)
+        if (DayManager.Instance.Day >= 2)
         {
             Debug.LogWarning("Now Calling");
             randomEventCoroutine = StartCoroutine(RandomEventLoop());
@@ -31,15 +31,13 @@ public class RandomCall : MonoBehaviour
     }
     IEnumerator RandomEventLoop()
     {
-        yield return new WaitForSeconds(2f); // กันไม่ให้สุ่มทันทีหลังเริ่ม
-
         while (true)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(3f);
 
             float chance = Random.Range(0f, 100f);
 
-            if (chance < 90f && RE.NoPower == false && Bc.calling == false && isNowPlayingRandom == false)
+            if (chance < 20f && RE.NoPower == false && Bc.calling == false && isNowPlayingRandom == false)
             {
                 Debug.LogWarning("Now Calling");
                 Bc.calling = true;
@@ -67,7 +65,7 @@ public class RandomCall : MonoBehaviour
 
     public void PlayRandomSound()
     {
-        if (DayManager.Instance.Day != 1)
+        if (DayManager.Instance.Day >= 2)
         {
             if (clips.Length == 0) return;
 

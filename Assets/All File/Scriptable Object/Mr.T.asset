@@ -15,3 +15,8 @@ MonoBehaviour:
   videoPrefab: {fileID: 3222992514588635437, guid: 97d914189f34286408d6a76ce09c0091, type: 3}
   ChecklistPrefab: {fileID: 1436655808848470738, guid: e9b0b50ec4c57684eb9f4340f1f851f9, type: 3}
   description: 
+  ID: 2
+  Check1: 1
+  Check2: 0
+  Check3: 1
+  Check4: 0

@@ -7,10 +7,9 @@ public class DayManager : MonoBehaviour
 {
     [Header("Object")]
     public GameObject EventSystem;
-    private GameObject currentVideoObj;
-    private GameObject currentChecklistUI;
-    public bool isMrP = false;
-    public bool isMrT = false;
+    public GameObject currentVideoObj;
+    public GameObject currentChecklistUI;
+    public int ID;
     public TMP_Text DayText;
     [Header("Pos")]
     public GameObject Screen;
@@ -20,10 +19,11 @@ public class DayManager : MonoBehaviour
     public ClickableObject Co;
     public Camerascript Cs;
     public ActionChecker Ac;
+    End En;
     [Header("VDOData")]
     public VDOData[] allVDOData;
-    private VDOData selectedVDOData;
-    private VDOData selectedChecklistData;
+    public VDOData selectedVDOData;
+    public VDOData selectedChecklistData;
     public Transform uiCanvasParent;
     public static DayManager Instance;
     public int Day = 1;
@@ -42,6 +42,7 @@ public class DayManager : MonoBehaviour
     }
     void Start()
     {
+        En = gameObject.GetComponent<End>();
         ScreenPo = Screen.transform.position;
         ScreenRo = Screen.transform.rotation;
 
@@ -71,20 +72,6 @@ public class DayManager : MonoBehaviour
 
         selectedVDOData = allVDOData[Random.Range(0, allVDOData.Length)];
         selectedChecklistData = selectedVDOData;
-        switch (selectedVDOData.name){ 
-            case "Mr.P":
-                isMrP = true;
-                isMrT = false;
-                break;
-            case "Mr.T":
-                isMrP = false;
-                isMrT = true;
-                break;
-            default:
-                isMrP = false;
-                isMrT = false;
-                break;
-        }
 
 
 
@@ -106,7 +93,8 @@ public class DayManager : MonoBehaviour
         {
             currentChecklistUI = Instantiate(selectedChecklistData.ChecklistPrefab, uiCanvasParent);
             Cs.ChecklistToggle = currentChecklistUI;
-            currentChecklistUI.SetActive(false); 
+            currentChecklistUI.SetActive(false);
+            ID = selectedChecklistData.ID;
 
             Button[] buttons = currentChecklistUI.GetComponentsInChildren<Button>(true);
 
@@ -144,5 +132,12 @@ public class DayManager : MonoBehaviour
 
         Debug.Log("Description: " + selectedVDOData.description);
     }
-
+   
+    public void End()
+    {
+        if (Day == 3)
+        {
+            En.ChangeScene();
+        }
+    }
 }
